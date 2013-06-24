@@ -3,7 +3,7 @@
 ;; Copyright (C) 1999, 2000, 2001 Free Software Foundation, Inc.
 ;; Copyright (C) 2011 Jim Hourihan
 ;;
-;; Authors: Xavier.Decoret@imag.fr, 
+;; Authors: Xavier.Decoret@imag.fr,
 ;;          Jim Hourihan <jimhourihan ~at~ gmail.com> (updated for 4.3, etc)
 ;; Keywords: languages
 ;; Version: 2.0
@@ -119,7 +119,7 @@
 
 (defvar glsl-mode-map
   (let ((glsl-mode-map (make-sparse-keymap)))
-    (define-key glsl-mode-map [S-iso-lefttab] 'ff-find-other-file)    
+    (define-key glsl-mode-map [S-iso-lefttab] 'ff-find-other-file)
     glsl-mode-map)
   "Keymap for GLSL major mode")
 
@@ -212,7 +212,7 @@
   (defvar glsl-deprecated-builtin-list
     '("texture1D" "texture1DProj" "texture1DLod" "texture1DProjLod"
       "texture2D" "texture2DProj" "texture2DLod" "texture2DProjLod"
-      "texture2DRect" "texture2DRectProj" 
+      "texture2DRect" "texture2DRectProj"
       "texture3D" "texture3DProj" "texture3DLod" "texture3DProjLod"
       "shadow1D" "shadow1DProj" "shadow1DLod" "shadow1DProjLod"
       "shadow2D" "shadow2DProj" "shadow2DLod" "shadow2DProjLod"
@@ -241,13 +241,13 @@
 
 (defvar glsl-font-lock-keywords-1
   (list
-   (cons (eval-when-compile 
-           (format "^[ \t]*#[ \t]*\\<\\(%s\\)\\>" 
+   (cons (eval-when-compile
+           (format "^[ \t]*#[ \t]*\\<\\(%s\\)\\>"
                    (regexp-opt glsl-preprocessor-directive-list)))
-         glsl-preprocessor-face) 
+         glsl-preprocessor-face)
    (cons (eval-when-compile
            (glsl-ppre glsl-type-list))
-         glsl-type-face) 
+         glsl-type-face)
    (cons (eval-when-compile
            (glsl-ppre glsl-deprecated-modifier-list))
          glsl-deprecated-keyword-face)
@@ -296,7 +296,7 @@
 (defun glsl-find-man-page (thing)
   (interactive
    (let ((word (current-word nil t)))
-     (list 
+     (list
       (completing-read
        (concat "OpenGL.org GLSL man page: (" word "): ")
        (glsl-man-completion-list)
@@ -305,6 +305,7 @@
     (w3m-browse-url
      (concat glsl-man-pages-base-url thing ".xml"))))
 
+;;;###autoload
 (define-derived-mode glsl-mode c-mode "GLSL"
   "Major mode for editing OpenGLSL shader files."
   (set (make-local-variable 'font-lock-defaults) '(glsl-font-lock-keywords))
